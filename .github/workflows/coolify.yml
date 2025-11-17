@@ -1,0 +1,30 @@
+name: Coolify Bundle CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: deploy/coolify
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Copy environment template
+        run: cp .env.example .env
+
+      - name: Validate docker-compose definition
+        run: docker compose config
+
+      - name: Validate Coolify manifest JSON
+        run: jq . coolify.json >/dev/null
+

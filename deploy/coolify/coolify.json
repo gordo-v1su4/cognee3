@@ -94,7 +94,6 @@
     ]
   },
   "documentation": {
-    "readme": "README.md",
-    "deployment": "docs/deployment/coolify.md"
+    "readme": "README.md"
   }
 }
